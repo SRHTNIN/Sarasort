@@ -1,5 +1,8 @@
 Title = "SaraSortd Config"
 
+SafeMode = 1 # If SaraSortd should stop if an error with the config appears. 1 is stop, 0 is continue.
+SilentMode = 0 # If SaraSortd should write stuff to the terminal as well.
+
 [Variables] # Only use these in config files, not the actual file names themselves..
 NextNum = "*" # The next available number. If 1 already exists, 2 will be used. Starts at 1.
 NextChar = "&" # The next available character. If A already exists, B will be used.
@@ -10,10 +13,6 @@ OrgFileName = "~" # The original name of the sorted file. If "blahblah.txt" gets
 OrgFileType = "^" # The original file type of the sorted file. If "example.png" gets sorted, "^" would be equal to ".png".
 
 Year = "[y]" # The current year, E.G. "2026".
-
-MonthName = "[M]" # The name of the current month, E.G. "March".
-DayName = "[D]" # The name of the current day, E.G. "Friday".
-
 Month = "[m]" # The date of the current month, E.G. "03".
 Day = "[d]" # The date of the current day, E.G. "27".
 
@@ -22,12 +21,13 @@ Minute = "[n]" # The current minute, E.G. "44".
 Second = "[s]" # The current second, E.G. "11".
 
 VarCall  = "%%" # The characters used at the start and end of variable calls. The first character is to the left; second is to the right.
+# NOTE: If any parameters in the config uses just "%%", it gets a variable from the program itself, not from the config.
 
 [DirectoryPaths]
-RootDir = "Unset"
-InputDir = "%RootDir%"
-OutputDir = "%RootDir%"
-LogDir = ".%RootDir%/Logs"
+RootDir = "Unset" # Parent directory. Folder where all SaraSortd folders live.
+InputDir = ["%RootDir%"] # If files get put here, they'll be sorted.
+OutputDir = ["%RootDir%"] # Where sortted files go.
+LogDir = ".%RootDir%/Logs" # Where log files from SaraSortd go.
 FailedDir =".%RootDir%/Failed" # For files that failed to be sorted.
 
 [Names]
@@ -36,4 +36,12 @@ LogFileName = "[y].[m].[d]_*" # Name of log files.
 ConfFileName = ".@Config" # Name of config files for directories.
 
 [Log]
-Sorted = "Sorted ~^ to %SortDir%"
+All = "[h]:[n]:[s] | " # What to put at the start of all lines in Log file.
+
+Start = "Started: SaraSortd" # When SaraSortd starts.
+NotStart = "Start Failed: SaraSortd." # When SaraSortd fails to start for some reason.
+
+Sorted = "Sorted: ~^ to %SortDir%." # When a file gets sorted.
+
+Unset = "Error: %% is not set." # When a parameter in the config is not set. %% is the parameter that wasn't set.
+Set = "Set: %% to %%." # When a previously unset parameter in the config is set. %% is the parameter that got set.
