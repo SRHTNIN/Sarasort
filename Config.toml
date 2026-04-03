@@ -19,7 +19,7 @@ Second = "[s]"
 VarCall = "%%"
 
 [DirectoryPaths]
-RootDir = "/home/sarah/TESTDIR"
+RootDir = "Unset"
 InputDir = [ "%RootDir%"]
 OutputDir = [ "%RootDir%/Output"]
 LogDir = "%RootDir%/.Logs"
