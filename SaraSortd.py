@@ -241,7 +241,13 @@ def DecideNewPath(FilePath):
             LogWrite(TextOutput)
             Speak(TextOutput)
 
-            if fnmatch.fnmatch(UnsortedFile, Pattern):
+            if (File["CaseSensitive"] == 1):
+                Match = fnmatch.fnmatchcase(UnsortedFile, Pattern)
+                
+            else:
+                Match = fnmatch.fnmatch(UnsortedFile.lower(), Pattern.lower())
+
+            if Match:
                 NewFileName = File["NewFileName"]
 
                 if (ConfVars["NextNum"] in NewFileName):
