@@ -302,30 +302,62 @@ def DecideNewPath(FilePath):
             if Match:
                 NewFileName = File["NewFileName"]
 
-                NewFileName = Parse(
-                    String = NewFileName,
-                    Path = DirConfPath,
-                    OrgFile = UnsortedFile,
-                    NextNum = File["NextNum"],
-                    NextChar = File["NextChar"],
-                    Parent = ParentName,
-                )
+                NewFileName = Parse(String = NewFileName, Path = DirConfPath, OrgFile = UnsortedFile, NextNum = File["NextNum"], NextChar = File["NextChar"], Parent = ParentName)
 
                 if File["Overwrite"] == 0 and os.path.exists(os.path.join(Output, NewFileName)):
                     continue
 
-                if ConfVars["NextNum"] in NewFileName:
-                    UpdateConf(
-                        DirConfPath,
-                        "NextNum",
-                        (int(GetConf("NextNum", DirConfPath)) + 1),
-                    )
+                if ConfVars["NextNum"] in File["NewFileName"]:
+                    ConfData = toml.load(DirConfPath)
 
-                if ConfVars["NextChar"] in NewFileName:
-                    CurrentChar = GetConf("NextChar", DirConfPath)
-                    if CurrentChar and len(CurrentChar) == 1 and CurrentChar.isalpha():
-                        NewChar = chr(((ord(CurrentChar.upper()) - 65 + 1) % 26) + 65)
-                        UpdateConf(DirConfPath, "NextChar", NewChar)
+                    NewNum = (int(File["NextNum"]) + 1)
+
+                    for Item in ConfData.get("Files", []):
+                        if Item.get("Pattern") == File["Pattern"]:
+                            Item["NextNum"] = NewNum
+                            break
+
+                    with open(DirConfPath, "w", encoding="utf-8") as ConfFile:
+                        toml.dump(ConfData, ConfFile)
+
+                    TextOutput = Parse(String = ConfLog["ValueSet"], VarCall = f"NextChar to {NewNum}")
+                    LogWrite(TextOutput)
+                    Speak(TextOutput)
+
+                if ConfVars["NextChar"] in File["NewFileName"]:
+                    CurrentChar = File["NextChar"]
+                    CurrentChar = CurrentChar.upper()
+                    Result = list(CurrentChar)
+
+                    Count = len(Result) - 1
+
+                    while Count >= 0:
+                        if Result[Count] == "Z":
+                            Result[Count] = "A"
+                            Count -= 1
+
+                        else:
+                            Result[Count] = chr(ord(Result[Count]) + 1)
+                            break
+
+                    else:
+                        Result.insert(0, "A")
+
+                    NewChar = "".join(Result)
+
+                    ConfData = toml.load(DirConfPath)
+
+                    for Item in ConfData.get("Files", []):
+                        if Item.get("Pattern") == File["Pattern"]:
+                            Item["NextChar"] = NewChar
+                            break
+
+                    with open(DirConfPath, "w", encoding="utf-8") as ConfFile:
+                        toml.dump(ConfData, ConfFile)
+
+                    TextOutput = Parse(String = ConfLog["ValueSet"], VarCall = f"NextChar to {NewChar}")
+                    LogWrite(TextOutput)
+                    Speak(TextOutput)
 
                 return f"{Output}/{NewFileName}"
 
@@ -383,10 +415,27 @@ def Init():
                 InputDir = Parse(String = InputDir, Path = ConfPath, Parent = os.path.basename(os.path.dirname(InputDir)))
                 Dir(InputDir, Output = False, CopyConf = False)
 
+            for Output in ConfDirs["OutputDir"]:
+                Output = Parse(String = Output, Parent = os.path.basename(os.path.dirname(Output)))
+                Dir(Output)
+
+                DirConfPath = f"{os.path.join(Output, Parse(String = ConfNames["DirConfName"], Parent = os.path.basename(Output)))}.toml"
+                ConfData = toml.load(DirConfPath)
+
+                for Item in ConfData.get("Files", []):
+                    Character = re.escape(ConfVars["NextChar"])
+                    Matches = re.findall(f"{Character}+", Item["NewFileName"])
+                    Width = max((len(Match) for Match in Matches), default=0)
+
+                    if Width > 0:
+                        Item["NextChar"] = Item["NextChar"].upper().rjust(Width, "A")
+
+                with open(DirConfPath, "w", encoding = "utf-8") as ConfFile:
+                    toml.dump(ConfData, ConfFile)
+
             TextOutput = Parse(String = ConfLog["Start"], Path = ConfPath)
             LogWrite(TextOutput)
             Speak(TextOutput)
-
             Main()
 
         else:
@@ -401,10 +450,6 @@ def Init():
 
 
 def Main():
-    for Output in ConfDirs["OutputDir"]:
-        Output = Parse(String = Output, Parent = os.path.basename(os.path.dirname(Output)))
-        Dir(Output)
-
     try:
         while True:
             for Input in ConfDirs["InputDir"]:
