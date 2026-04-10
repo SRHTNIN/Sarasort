@@ -2,6 +2,7 @@ Title = "Unset"
 LastFile = "Unset"
 ParentDir = "Unset"
 ValidInputDirs = ["*"]
+FileLimit = 0
 
 [[Files]]
 Pattern = "*"

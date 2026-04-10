@@ -251,7 +251,6 @@ def DecideNewPath(FilePath):
         DirConfPath = f"{Output}/{DirConfName}.toml"
 
         ValidInputDirs = GetConf("ValidInputDirs", DirConfPath)
-        print(ValidInputDirs)
 
         for ValidInputDir in ValidInputDirs:
             ValidInputDir = Parse(String = ValidInputDir, Parent = GetConf("ParentDir", DirConfPath))
@@ -266,6 +265,21 @@ def DecideNewPath(FilePath):
 
         if not os.path.exists(DirConfPath) or not InputDirValid:
             continue
+
+
+        OutputFiles = 0
+
+        FileLimitConf = GetConf("FileLimit", DirConfPath)
+
+        if FileLimitConf > 0:
+            for OutputFile in os.listdir(Output):
+                if OutputFile.startswith("."):
+                    continue
+                if os.path.isfile(os.path.join(Output, OutputFile)):
+                    OutputFiles += 1
+
+            if OutputFiles >= FileLimitConf:
+                continue
 
         FileConf = GetConf("Files", DirConfPath)
 
