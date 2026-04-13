@@ -1,4 +1,5 @@
 # SaraSortd
+
 A python daemon that can automatically sort your files to your liking without using AI.
 
 It's made by Sarah, hence the name. :3
@@ -10,7 +11,21 @@ The second number going up means that something has been changed, but you can st
 use your old config files with SaraSortd.py.
 
 
+## Usage
+
+SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
+
+Example use-cases:
+
+- Sorting log files from multiple programs into one directory.
+
+- Sorting downloaded github repositories to a directory for your IDE.
+
+- Regularly cloning important files into a backup directory.
+
+
 ## Dependencies
+
 toml: Use ```pip install toml``` to install toml.
 
 
