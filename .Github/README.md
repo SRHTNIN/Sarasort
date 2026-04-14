@@ -142,7 +142,9 @@ ParentDir = "Unset" # The name of this directory. It gets automatically updated 
 
 ValidInputDirs = ["*"] # Directories that are valid for sorting. Basically, if a file is from one of these directories, they can be sorted here. * is a wildcard; ? is a one-character wilcard. E.G: if "ValidInputDirs = ["/TestDir/*"]" any file from any directory in "/TestDir" will be allowed to be sorted here.
 
-FileLimit = 0
+FileLimit = 0 # The max limit of files a directory can have. If this is 0, then there's no limit.
+
+DeleteOrg = 1 # If SaraSortd should delete the original file or not. If this is 1, then sorted files will be 'moved' to an output directory. If not, they will be 'copied' to an output directory.
 
 [[Files]] # The double brackets means that you can add multiple types of files to be sorted here. Just copy [[Files]] and all the parameters under it, and paste it under or over this section, then you may change the values of the new parameters. E.G:
 
