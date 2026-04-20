@@ -166,11 +166,11 @@ def Parse(
         ConfVars["OrgFileName"]: str(OrgFileName),
         ConfVars["OrgFileType"]: str(OrgFileType),
         ConfVars["Year"]: str(Now.year),
-        ConfVars["Month"]: str(Now.month),
-        ConfVars["Day"]: str(Now.day),
-        ConfVars["Hour"]: str(Now.hour),
-        ConfVars["Minute"]: str(Now.minute),
-        ConfVars["Second"]: str(Now.second),
+        ConfVars["Month"]: str(Now.month).rjust(2, "0"),
+        ConfVars["Day"]: str(Now.day).rjust(2, "0"),
+        ConfVars["Hour"]: str(Now.hour).rjust(2, "0"),
+        ConfVars["Minute"]: str(Now.minute).rjust(2, "0"),
+        ConfVars["Second"]: str(Now.second).rjust(2, "0"),
         ConfVars["VarCall"]: str(VarCall),
     }
 
@@ -188,6 +188,23 @@ def Parse(
 
 
 def Clone(Source, Destination, NewName, Delete = False):
+    if (os.path.dirname(Source) == Destination):
+        FileHistoryPath = f"{Destination}/{Parse(ConfNames["FileHistoryName"], Parent = os.path.basename(Destination))}.toml"
+        print("FileHistoryPath:",FileHistoryPath)
+
+        if not os.path.exists(FileHistoryPath):
+            with open(FileHistoryPath, "w", encoding = "utf-8") as HistoryFile:
+                toml.dump({"Title": f"{os.path.basename(Destination)} History", "History": []}, HistoryFile)
+
+        HistoryFileData = toml.load(FileHistoryPath)
+        if (NewName not in HistoryFileData["History"]):
+            HistoryFileData["History"].append(NewName)
+            with open(FileHistoryPath, "w", encoding = "utf-8") as HistoryFile:
+                toml.dump(HistoryFileData, HistoryFile)
+
+        os.rename(Source, os.path.join(Destination, NewName))
+        return
+
     Dir(Destination, Output = False, CopyConf = False)
     shutil.copy2(Source, Destination)
 
@@ -364,6 +381,16 @@ def DecideNewPath(FilePath):
 def Sort(FilePath):
     NewPath = DecideNewPath(FilePath)
 
+    if NewPath is None:
+        Dir(Parse(String = ConfDirs["FailedDir"]), Output = False, CopyConf = False)
+        NewName = os.path.basename(FilePath)
+        Clone(FilePath, Parse(String = ConfDirs["FailedDir"]), NewName, True)
+
+        TextOutput = Parse(String = ConfLog["NotSorted"], VarCall = FilePath)
+        LogWrite(TextOutput)
+        Speak(TextOutput)
+        return
+
     NewDirPath = os.path.dirname(NewPath)
     NewName = os.path.basename(NewPath)
 
@@ -372,16 +399,6 @@ def Sort(FilePath):
 
     else:
         Delete = False
-
-    if NewPath is None:
-        Dir(Parse(String = ConfDirs["FailedDir"]), Output = False, CopyConf = False)
-        NewName = os.path.basename(FilePath)
-        Clone(FilePath, Parse(String = ConfDirs["FailedDir"]), NewName, Delete)
-
-        TextOutput = Parse(String = ConfLog["NotSorted"], VarCall = FilePath)
-        LogWrite(TextOutput)
-        Speak(TextOutput)
-        return
 
     try:
         Clone(FilePath, NewDirPath, NewName, Delete)
@@ -450,10 +467,23 @@ def Main():
     try:
         while True:
             for Input in ConfDirs["InputDir"]:
+                RecurseDir = False
+
                 InputPath = Parse(Input)
 
                 if not os.path.exists(InputPath):
                     continue
+
+                for Output in ConfDirs["OutputDir"]:
+                    OutputPath = Parse(Output)
+
+                    if (OutputPath == InputPath):
+                        RecurseDir = True
+                        FileHistoryPath = f"{InputPath}/{Parse(ConfNames["FileHistoryName"], Parent = os.path.basename(InputPath))}.toml"
+
+                        if not os.path.exists(FileHistoryPath):
+                            with open(FileHistoryPath, "w", encoding = "utf-8") as HistoryFile:
+                                toml.dump({"Title": f"{os.path.basename(InputPath)} History", "History": [] }, HistoryFile)
 
                 for FileName in os.listdir(InputPath):
                     FilePath = f"{InputPath}/{FileName}"
@@ -462,6 +492,13 @@ def Main():
                         FileName = os.path.basename(FilePath)
                         if FileName.startswith(".") and Conf["DotFiles"] == 0:
                             continue
+
+                        if RecurseDir:
+                            HistoryFile = toml.load(FileHistoryPath)
+
+                            if (Parse(FileName, Parent = os.path.basename(InputPath)) in HistoryFile["History"]):
+                                continue
+
                         Sort(FilePath)
 
             time.sleep(Conf.get("CheckInput", 10))

@@ -1,7 +1,7 @@
 Title = "SaraSortd Config"
 SafeMode = 1
 SilentMode = 0
-CheckInput = 10
+CheckInput = 5
 DotFiles = 0
 Logging = 1
 OverwriteDirConf = 0
@@ -21,7 +21,7 @@ Second = "[s]"
 VarCall = "%%"
 
 [DirectoryPaths]
-RootDir = "Unset"
+RootDir = "/home/sarah/TestDir"
 InputDir = [ "%RootDir%/Input" ]
 OutputDir = [ "%RootDir%/Output" ]
 LogDir = "%RootDir%/.Logs"
@@ -30,12 +30,13 @@ FailedDir = "%RootDir%/.Failed"
 [Names]
 LogFileName = "[y].[m].[d]"
 DirConfName = ".@Config"
+FileHistoryName = ".@History"
 
 [Log]
 All = "[h]:[n]:[s] | "
 Start = "Started SaraSortd."
 NotStart = "Error: Failed to start SaraSortd."
-Stop = "\nStopped SaraSortd."
+Stop = "Stopped SaraSortd.\n"
 MatchPattern = "Checking %%."
 Sorted = "Sorted %%."
 NotSorted = "Error: Failed to sort %%. No valid output directory."

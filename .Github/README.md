@@ -103,6 +103,8 @@ LogFileName = "[y].[m].[d]._*" # Name for log files.
 
 DirConfName = ".@Config" # Name for config files for directories.
 
+FileHistoryName = ".@History" # Name for file history files. This keeps track of sorted files if an input and output are the same directory.
+
 [Log]
 All = "[h]:[n]:[s] | " # What to put at the start of all lines in Log file.
 
