@@ -1,4 +1,4 @@
-<img align="center" src=".Github/Banners/SaraSortd.png" width="100%" alt="SaraSortd"/>
+<img align="center" src="Banners/SaraSortd.png" width="100%" alt="SaraSortd"/>
 (Version = "6.1")
 
 A python daemon that can automatically sort your files to your liking without using AI.
@@ -9,7 +9,7 @@ If the first number in the version goes up, it means that old config files will 
 
 If the second number in the version goes up, something new got added, but your old config files will still work just fine.
 
-<img align="center" src=".Github/Banners/Usage.png" width="100%" alt="Usage"/>
+<img align="center" src="Banners/Usage.png" width="100%" alt="Usage"/>
 
 SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
 
@@ -21,14 +21,14 @@ Example use-cases:
 
 - Regularly cloning important files into a backup directory.
 
-<img align="center" src=".Github/Banners/Dependencies.png" width="100%" alt="Dependencies"/>
+<img align="center" src="Banners/Dependencies.png" width="100%" alt="Dependencies"/>
 
 python
 
 toml: Use ```pip install toml``` to install toml.
 
 
-<img align="center" src=".Github/Banners/Installation.png" width="100%" alt="Installation"/>
+<img align="center" src="Banners/Installation.png" width="100%" alt="Installation"/>
 
 Here's an [installation video](https://youtu.be/ZMIaOhZA0kE).
 Here's a step-by-step tutorial (in case you don't want to watch the video).
@@ -40,9 +40,9 @@ Here's a step-by-step tutorial (in case you don't want to watch the video).
 5. Run ```python SaraSortd.py``` to run the program. (This will make new directories for you.)
 6. Edit your output directories' configs.
 
-<img align="center" src=".Github/Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
+<img align="center" src="Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
 
-<img align="center" src=".Github/Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
+<img align="center" src="Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
 
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
@@ -139,7 +139,7 @@ NoPermission = "Error: No permission to %%." # When SaraSortd lacks permission t
 ```
 
 
-<img align="center" src=".Github/Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
+<img align="center" src="Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
 
 The output directory config references the SaraSortd config (GlobalConf.toml). This means that you can, for example, use the character assigned to "NextNum" in GlobalConf.toml in this config (OutputDirConf.toml). This applies to all Variables in the SaraSortd config (GlobalConf.toml).
 
@@ -189,7 +189,7 @@ CaseSensitive = 0 # Whether this "Pattern" is case-sensitive or not. 1 is yes, 0
 Overwrite = 1 # Whether this specific file type can be overwritten by others of the same type. 0 is no, 1 is yes.
 ```
 
-<img align="center" src=".Github/Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
+<img align="center" src="Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
