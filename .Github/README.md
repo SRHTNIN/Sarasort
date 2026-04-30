@@ -1,11 +1,15 @@
-# SaraSortd
-(Version = "6.0")
+<img align="center" src="Banners/SaraSortd.png" width="100%" alt="SaraSortd"/>
+(Version = "6.1")
 
 A python daemon that can automatically sort your files to your liking without using AI.
 
 It's made by Sarah, hence the name. :3
 
-## Usage
+If the first number in the version goes up, it means that old config files will not work with the new SaraSortd.py.
+
+If the second number in the version goes up, something new got added, but your old config files will still work just fine.
+
+<img align="center" src="Banners/Usage.png" width="100%" alt="Usage"/>
 
 SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
 
@@ -17,19 +21,14 @@ Example use-cases:
 
 - Regularly cloning important files into a backup directory.
 
-## Dependencies
+<img align="center" src="Banners/Dependencies.png" width="100%" alt="Dependencies"/>
 
 python
 
 toml: Use ```pip install toml``` to install toml.
 
-## Versioning
 
-If the first number in the version goes up, it means that old config files will not work with the new SaraSortd.py.
-
-If the second number in the version goes up, something new got added, but your old config files will still work just fine.
-
-## Installation
+<img align="center" src="Banners/Installation.png" width="100%" alt="Installation"/>
 
 Here's an [installation video](https://youtu.be/ZMIaOhZA0kE).
 Here's a step-by-step tutorial (in case you don't want to watch the video).
@@ -41,14 +40,14 @@ Here's a step-by-step tutorial (in case you don't want to watch the video).
 5. Run ```python SaraSortd.py``` to run the program. (This will make new directories for you.)
 6. Edit your output directories' configs.
 
-## Config explanation
+<img align="center" src="Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
 
-### SaraSortd Config (GlobalConf.toml)
+<img align="center" src="Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
 
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.0" # Just the version number for the config file.
+Version = "6.1" # Just the version number for the config file.
 
 SafeMode = 1 # If SaraSortd should stop if an error with the config appears. 1 is stop, 0 is continue.
 
@@ -140,14 +139,14 @@ NoPermission = "Error: No permission to %%." # When SaraSortd lacks permission t
 ```
 
 
-### Output Directory Config (OutputDirConf.toml)
+<img align="center" src="Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
 
 The output directory config references the SaraSortd config (GlobalConf.toml). This means that you can, for example, use the character assigned to "NextNum" in GlobalConf.toml in this config (OutputDirConf.toml). This applies to all Variables in the SaraSortd config (GlobalConf.toml).
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.0" # The version number of the config.
+Version = "6.1" # The version number of the config.
 
 LastFile = "Unset" # The last file that was sorted to this directory. It gets automatically updated whenever a file gets sorted to this directory.
 
@@ -190,12 +189,12 @@ CaseSensitive = 0 # Whether this "Pattern" is case-sensitive or not. 1 is yes, 0
 Overwrite = 1 # Whether this specific file type can be overwritten by others of the same type. 0 is no, 1 is yes.
 ```
 
-### Input Directory Config (InputDirConf.toml)
+<img align="center" src="Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.0"
+Version = "6.1"
 
 ParentDir = "Unset" # The name of this directory. It gets automatically updated when this config gets copied to an output directory.
 
