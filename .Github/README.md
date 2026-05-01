@@ -1,8 +1,6 @@
 <img align="center" src="Banners/Main.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
 (Version = "6.2")
 
-A python daemon that can automatically sort your files to your liking without using AI.
-
 It's made by Sarah, hence the name. :3
 
 If the first number in the version goes up, it means that old config files will not work with the new SaraSortd.py.
