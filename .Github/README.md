@@ -1,5 +1,7 @@
 <img align="center" src="Banners/Main.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
+
 (Version = "6.2")
+
 
 It's made by Sarah, hence the name. :3
 
