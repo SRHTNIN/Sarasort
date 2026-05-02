@@ -6,7 +6,7 @@ import shutil
 import time
 import toml
 
-# Version = "6.2"
+# Version = "6.3"
 
 ConfPath = "./GlobalConf.toml"
 
