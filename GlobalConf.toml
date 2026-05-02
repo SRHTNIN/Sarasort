@@ -22,7 +22,7 @@ Second = "[s]"
 VarCall = "%%"
 
 [DirectoryPaths]
-RootDir = "C:/Users/StigOscarAadalen-Aas/OneDrive - Telemark fylkeskommune/Desktop/Testdir"
+RootDir = "Unset"
 InputDir = [ "%RootDir%/Input" ]
 OutputDir = [ "%RootDir%/Output" ]
 LogDir = "%RootDir%/.Logs"
