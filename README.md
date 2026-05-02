@@ -10,7 +10,11 @@ It's made by Sarah, hence the name. :3
 If the first number in the version goes up, it means that old config files will not work with the new SaraSortd.py.
 If the second number in the version goes up, something new got added, but your old config files will still work just fine.
 
+---
+
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Usage.png" width="100%" alt="Usage"/>
+
+---
 
 SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
 
@@ -28,8 +32,11 @@ python
 
 toml: Use ```pip install toml``` to install toml.
 
+---
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Installation.png" width="100%" alt="Installation"/>
+
+---
 
 Here's an [installation video](https://youtu.be/QkMZVSJ-PLQ?si=Nd20jDyHT7CN6Ztb) on Linux.
 
@@ -42,9 +49,15 @@ Here's a step-by-step tutorial (in case you don't want to watch the video).
 5. Run ```python SaraSortd.py``` to run the program. (This will make new directories for you.)
 6. Edit your new output directories' configs.
 
+---
+
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
 
+---
+
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
+
+---
 
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
@@ -139,9 +152,11 @@ Unzipping = "Unzipping: %%." # When a directory gets unzipped.
 NoPermission = "Error: No permission to %%." # When SaraSortd lacks permission to do something.
 # %% is the action that the program had no permission to do. E.G. "remove directory  /home/bob/exampledir".
 ```
-
+---
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
+
+---
 
 The output directory config references the SaraSortd config (GlobalConf.toml). This means that you can, for example, use the character assigned to "NextNum" in GlobalConf.toml in this config (OutputDirConf.toml). This applies to all Variables in the SaraSortd config (GlobalConf.toml).
 
@@ -191,7 +206,11 @@ CaseSensitive = 0 # Whether this "Pattern" is case-sensitive or not. 1 is yes, 0
 Overwrite = 1 # Whether this specific file type can be overwritten by others of the same type. 0 is no, 1 is yes.
 ```
 
+---
+
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
+
+---
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
@@ -208,3 +227,5 @@ Pattern = "*" # A pattern used to decide if a file should be sorted or not. * is
 
 CaseSensitive = 0 # Whether Pattern is case-sensitive or not. If CaseSensitive = 1 and your pattern is "*.PNG", then a file named "example.png" won't be sorted.
 ```
+
+---
