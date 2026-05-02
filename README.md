@@ -31,12 +31,12 @@ toml: Use ```pip install toml``` to install toml.
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Installation.png" width="100%" alt="Installation"/>
 
-Here's an [installation video](https://youtu.be/ZMIaOhZA0kE).
+Here's an [installation video](https://youtu.be/QkMZVSJ-PLQ?si=Nd20jDyHT7CN6Ztb).
 Here's a step-by-step tutorial (in case you don't want to watch the video).
 
 1. Install ZIP-file by clicking the green "Code" button on the top right, then clicking "Download Zip". 
 2. Unzip ZIP-file wherever you want the program to live.
-3. Edit your config files to your liking.
+3. Edit your config files to your liking. Make sure to edit your paths! (E.G. RootDir = "/home/janedoe/Programs/SaraSortd")
 4. Navigate to the new SaraSortd directory in your terminal (CMD / PowerShell on Windows).
 5. Run ```python SaraSortd.py``` to run the program. (This will make new directories for you.)
 6. Edit your new output directories' configs.
