@@ -23,6 +23,8 @@ Example use-cases:
 
 - Regularly cloning important files into a backup directory.
 
+---
+
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Dependencies.png" width="100%" alt="Dependencies"/>
 
 
