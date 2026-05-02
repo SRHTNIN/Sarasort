@@ -1,7 +1,5 @@
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/SaraSortd.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
 
----
-
 (Version = "6.3")
 
 
@@ -14,7 +12,6 @@ If the second number in the version goes up, something new got added, but your o
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Usage.png" width="100%" alt="Usage"/>
 
----
 
 SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
 
@@ -28,6 +25,7 @@ Example use-cases:
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Dependencies.png" width="100%" alt="Dependencies"/>
 
+
 python
 
 toml: Use ```pip install toml``` to install toml.
@@ -36,7 +34,6 @@ toml: Use ```pip install toml``` to install toml.
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Installation.png" width="100%" alt="Installation"/>
 
----
 
 Here's an [installation video](https://youtu.be/QkMZVSJ-PLQ?si=Nd20jDyHT7CN6Ztb) on Linux.
 
@@ -53,11 +50,8 @@ Here's a step-by-step tutorial (in case you don't want to watch the video).
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
 
----
-
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
 
----
 
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
@@ -156,7 +150,6 @@ NoPermission = "Error: No permission to %%." # When SaraSortd lacks permission t
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
 
----
 
 The output directory config references the SaraSortd config (GlobalConf.toml). This means that you can, for example, use the character assigned to "NextNum" in GlobalConf.toml in this config (OutputDirConf.toml). This applies to all Variables in the SaraSortd config (GlobalConf.toml).
 
@@ -210,7 +203,6 @@ Overwrite = 1 # Whether this specific file type can be overwritten by others of 
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
 
----
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
