@@ -1,17 +1,16 @@
-<img align="center" src="Banners/Main.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/SaraSortd.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
 
 ---
 
-(Version = "6.2")
+(Version = "6.3")
 
 
 It's made by Sarah, hence the name. :3
 
 If the first number in the version goes up, it means that old config files will not work with the new SaraSortd.py.
-
 If the second number in the version goes up, something new got added, but your old config files will still work just fine.
 
-<img align="center" src="Banners/Usage.png" width="100%" alt="Usage"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Usage.png" width="100%" alt="Usage"/>
 
 SaraSortd is for people who don't want to manually sort files, people who want to organise files, and people who want an automatic naming standard for their files.
 
@@ -23,33 +22,33 @@ Example use-cases:
 
 - Regularly cloning important files into a backup directory.
 
-<img align="center" src="Banners/Dependencies.png" width="100%" alt="Dependencies"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Dependencies.png" width="100%" alt="Dependencies"/>
 
 python
 
 toml: Use ```pip install toml``` to install toml.
 
 
-<img align="center" src="Banners/Installation.png" width="100%" alt="Installation"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Installation.png" width="100%" alt="Installation"/>
 
 Here's an [installation video](https://youtu.be/ZMIaOhZA0kE).
 Here's a step-by-step tutorial (in case you don't want to watch the video).
 
-1. Install ZIP-file.
+1. Install ZIP-file by clicking the green "Code" button on the top right, then clicking "Download Zip". 
 2. Unzip ZIP-file wherever you want the program to live.
-3. Navigate to the new SaraSortd directory in your terminal.
-4. Edit your config files to your liking.
+3. Edit your config files to your liking.
+4. Navigate to the new SaraSortd directory in your terminal (CMD / PowerShell on Windows).
 5. Run ```python SaraSortd.py``` to run the program. (This will make new directories for you.)
-6. Edit your output directories' configs.
+6. Edit your new output directories' configs.
 
-<img align="center" src="Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/ConfigInfo.png" width="100%" alt="Config Info"/>
 
-<img align="center" src="Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/GlobalConf.png" width="100%" alt="GlobalConf"/>
 
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.2" # Just the version number for the config file.
+Version = "6.3" # Just the version number for the config file.
 
 SafeMode = 1 # If SaraSortd should stop if an error with the config appears. 1 is stop, 0 is continue.
 
@@ -141,14 +140,14 @@ NoPermission = "Error: No permission to %%." # When SaraSortd lacks permission t
 ```
 
 
-<img align="center" src="Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/OutputDirConf.png" width="100%" alt="OutputDirConf"/>
 
 The output directory config references the SaraSortd config (GlobalConf.toml). This means that you can, for example, use the character assigned to "NextNum" in GlobalConf.toml in this config (OutputDirConf.toml). This applies to all Variables in the SaraSortd config (GlobalConf.toml).
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.2" # The version number of the config.
+Version = "6.3" # The version number of the config.
 
 LastFile = "Unset" # The last file that was sorted to this directory. It gets automatically updated whenever a file gets sorted to this directory.
 
@@ -191,16 +190,16 @@ CaseSensitive = 0 # Whether this "Pattern" is case-sensitive or not. 1 is yes, 0
 Overwrite = 1 # Whether this specific file type can be overwritten by others of the same type. 0 is no, 1 is yes.
 ```
 
-<img align="center" src="Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
+<img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/InputDirConf.png" width="100%" alt="InputDirConf"/>
 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.2"
+Version = "6.3"
 
 ParentDir = "Unset" # The name of this directory. It gets automatically updated when this config gets copied to an output directory.
 
-SortDirs = 0
+SortDirs = 0 # If the input directory should be allowed to sort directories within it. (Currently needs admin privileges to delete the original directory after sorting it).
 
 [[Files]] # The double brackets means that you can add multiple types of files to be sorted here. Just copy [[Files]] and all the parameters under it, and paste it under or over this section, then you may change the values of the new parameters.
 

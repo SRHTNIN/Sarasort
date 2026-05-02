@@ -1,5 +1,5 @@
 Title = "SaraSortd Config"
-Version = "6.2"
+Version = "6.3"
 SafeMode = 1
 SilentMode = 0
 CheckInput = 5
