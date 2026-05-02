@@ -31,7 +31,7 @@ toml: Use ```pip install toml``` to install toml.
 
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/Installation.png" width="100%" alt="Installation"/>
 
-Here's an [installation video](https://youtu.be/QkMZVSJ-PLQ?si=Nd20jDyHT7CN6Ztb).
+Here's an [installation video](https://youtu.be/QkMZVSJ-PLQ?si=Nd20jDyHT7CN6Ztb) on Linux.
 Here's a step-by-step tutorial (in case you don't want to watch the video).
 
 1. Install ZIP-file by clicking the green "Code" button on the top right, then clicking "Download Zip". 
