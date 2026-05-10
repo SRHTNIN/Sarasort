@@ -6,7 +6,7 @@ import shutil
 import time
 import toml
 
-# Version = "6.4"
+# Version = "7.0"
 
 ConfPath = "./GlobalConf.toml"
 
@@ -307,19 +307,6 @@ def DecideNewPath(FilePath):
 
         FileLimitConf = GetConf("FileLimit", OutDirConfPath)
 
-        if GetConf("Unzip", OutDirConfPath) == 1:
-            ZipTypes = ["zip", "tar.gz", "bz2"]
-            for OutputFile in os.listdir(Output):
-                if OutputFile.startswith("."):
-                    continue
-
-                for ZipType in ZipTypes:
-                    if OutputFile.lower().endswith(ZipType):
-                        shutil.unpack_archive(f"{Output}/{OutputFile}", Output, ZipType)
-                        TextOutput = Parse(String = ConfLog["Unzipping"], VarCall = f"{Output}/{OutputFile}")
-                        LogWrite(TextOutput)
-                        Speak(TextOutput)
-
         if FileLimitConf > 0:
             for OutputFile in os.listdir(Output):
                 if OutputFile.startswith("."):
@@ -513,6 +500,30 @@ def Main():
 
                 for Output in ConfDirs["OutputDir"]:
                     OutputPath = Parse(Output)
+                    OutDirConfPath = f"{OutputPath}/{Parse(ConfNames["OutDirConfName"], Parent = os.path.basename(OutputPath))}.toml"
+
+                    if len(GetConf("Unzip", OutDirConfPath)) >= 1:
+                        ZipTypes = GetConf("Unzip", OutDirConfPath)
+                        for OutputFile in os.listdir(OutputPath):
+                            if OutputFile.startswith("."):
+                                continue
+
+                            for ZipType in ZipTypes:
+                                print(ZipType)
+                                if (OutputFile.lower()).endswith((ZipType).lower()):
+                                    shutil.unpack_archive(f"{OutputPath}/{OutputFile}", OutputPath)
+                                    TextOutput = Parse(String = ConfLog["Unzipping"], VarCall = f"{OutputPath}/{OutputFile}")
+                                    LogWrite(TextOutput)
+                                    Speak(TextOutput)
+
+                                    try:
+                                        os.remove(f"{OutputPath}/{OutputFile}")
+
+                                    except PermissionError:
+                                        TextOutput = Parse(String = ConfLog["NoPermission"], VarCall = f"remove {OutputPath}/{OutputFile}")
+                                        LogWrite(TextOutput)
+                                        Speak(TextOutput)
+                                        continue
 
                     if (OutputPath == InputPath):
                         RecurseDir = True
@@ -550,7 +561,7 @@ def Main():
                             shutil.make_archive(FilePath, "zip", FilePath)
 
                             try:
-                                os.rmdir(FilePath)
+                                shutil.rmtree(FilePath, ignore_errors=True)
 
                             except PermissionError:
                                 TextOutput = Parse(String = ConfLog["NoPermission"], VarCall = f"remove directory {InputPath}/{FileName}")
@@ -568,7 +579,7 @@ def Main():
 
                         Sort(FilePath)
 
-            time.sleep(Conf.get("CheckInput", 10))
+            time.sleep(Conf.get("SortTimer", 10))
 
     except KeyboardInterrupt:
         TextOutput = GetConf("Stop", ConfPath)

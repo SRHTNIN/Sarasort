@@ -1,8 +1,8 @@
 Title = "SaraSortd Config"
-Version = "6.4"
+Version = "7.0"
 SafeMode = 1
 SilentMode = 0
-CheckInput = 5
+SortTimer = 1
 DotFiles = 0
 Logging = 1
 OverwriteDirConf = 0
