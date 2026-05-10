@@ -6,7 +6,7 @@ import shutil
 import time
 import toml
 
-# Version = "6.3"
+# Version = "6.4"
 
 ConfPath = "./GlobalConf.toml"
 
@@ -306,6 +306,19 @@ def DecideNewPath(FilePath):
         OutputFiles = 0
 
         FileLimitConf = GetConf("FileLimit", OutDirConfPath)
+
+        if GetConf("Unzip", OutDirConfPath) == 1:
+            ZipTypes = ["zip", "tar.gz", "bz2"]
+            for OutputFile in os.listdir(Output):
+                if OutputFile.startswith("."):
+                    continue
+
+                for ZipType in ZipTypes:
+                    if OutputFile.lower().endswith(ZipType):
+                        shutil.unpack_archive(f"{Output}/{OutputFile}", Output, ZipType)
+                        TextOutput = Parse(String = ConfLog["Unzipping"], VarCall = f"{Output}/{OutputFile}")
+                        LogWrite(TextOutput)
+                        Speak(TextOutput)
 
         if FileLimitConf > 0:
             for OutputFile in os.listdir(Output):
