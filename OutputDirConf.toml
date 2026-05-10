@@ -1,10 +1,11 @@
 Title = "Unset"
-Version = "6.3"
+Version = "7.0"
 LastFile = "Unset"
 ParentDir = "Unset"
 ValidInputDirs = ["*"]
 FileLimit = 0
 DeleteOrg = 1
+Unzip = []
 
 [[Files]]
 Pattern = "*"

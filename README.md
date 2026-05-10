@@ -1,6 +1,6 @@
 <img align="center" src="https://github.com/SRHTNIN/RepoAssets/blob/main/SaraSortd/Banners/SaraSortd.png" width="100%" alt="SaraSortd: a file and directory sorting daemon built with python."/>
 
-(Version = "6.3")
+(Version = "7.0")
 
 
 It's made by Sarah, hence the name. :3
@@ -58,13 +58,13 @@ Here's a step-by-step tutorial (in case you don't want to watch the video).
 ```
 Title = "SaraSortd Config" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.3" # Just the version number for the config file.
+Version = "7.0" # Just the version number for the config file.
 
 SafeMode = 1 # If SaraSortd should stop if an error with the config appears. 1 is stop, 0 is continue.
 
 SilentMode = 0 # If SaraSortd should write things it does, to the terminal.
 
-CheckInput = 3 # How many seconds it takes for SaraSortd to check input directories for new files to sort.
+SortTimer = 3 # How many seconds it takes for SaraSortd to check input directories for new files to sort.
 
 DotFiles = 0 # If SaraSortd should sort files that begin with ".". This is mainly for linux users, since hidden files always have "." in front of them.
 
@@ -158,7 +158,7 @@ The output directory config references the SaraSortd config (GlobalConf.toml). T
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.3" # The version number of the config.
+Version = "7.0" # The version number of the config.
 
 LastFile = "Unset" # The last file that was sorted to this directory. It gets automatically updated whenever a file gets sorted to this directory.
 
@@ -169,6 +169,9 @@ ValidInputDirs = ["*"] # Directories that are valid for sorting. Basically, if a
 FileLimit = 0 # The max limit of files a directory can have. If this is 0, then there's no limit.
 
 DeleteOrg = 1 # If SaraSortd should delete the original file or not. If this is 1, then sorted files will be 'moved' to an output directory. If not, they will be 'copied' to an output directory.
+
+Unzip = [] # What type of files this output directory should try to unzip. E.G:
+# Unzip = ["zip", "tar.gz"] would unzip .zip files and .tar files. This pairs insanely well with input directories' config's "SortDirs" parameter.
 
 [[Files]] # The double brackets means that you can add multiple types of files to be sorted here. Just copy [[Files]] and all the parameters under it, and paste it under or over this section, then you may change the values of the new parameters. E.G:
 
@@ -209,11 +212,11 @@ Overwrite = 1 # Whether this specific file type can be overwritten by others of 
 ```
 Title = "Unset" # NOTE: Do not change the title. This is so that the program knows which config file is which.
 
-Version = "6.3"
+Version = "7.0"
 
 ParentDir = "Unset" # The name of this directory. It gets automatically updated when this config gets copied to an output directory.
 
-SortDirs = 0 # If the input directory should be allowed to sort directories within it. (Currently needs admin privileges to delete the original directory after sorting it).
+SortDirs = 0 # If the input directory should be allowed to sort directories within it. Automatically uses .zip to move directories.
 
 [[Files]] # The double brackets means that you can add multiple types of files to be sorted here. Just copy [[Files]] and all the parameters under it, and paste it under or over this section, then you may change the values of the new parameters.
 
